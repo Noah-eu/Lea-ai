@@ -5,9 +5,9 @@ type MessageBubbleProps = {
 
 export default function MessageBubble({ sender, text }: MessageBubbleProps) {
   return (
-    <div className={`flex items-end ${sender === 'user' ? 'justify-end' : 'justify-start'} mb-2`}>
+    <div className={`flex items-end ${sender === 'user' ? 'justify-end': 'justify-start'} mb-2`}>
       {/* Fotka u Leiny zprávy */}
-      {sender === 'noah' && (
+      {sender === 'lea' && (
         <img
           src="/lea.jpg"
           alt="Lea"
