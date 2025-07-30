@@ -62,7 +62,7 @@ export default function Chat() {
       {/* Leina fotka v hlavičce */}
       <div className="flex flex-col items-center mb-4">
         <img src="/noah.jpg" alt="Lea" className="w-16 h-16 rounded-full shadow-md" />
-        <div className="font-semibold text-gray-700 mt-2">Noah</div>
+        <div className="font-semibold text-gray-700 mt-2">Lea</div>
       </div>
       <div className="flex-1 overflow-y-auto mb-2">
         {messages.map((msg, i) => (
