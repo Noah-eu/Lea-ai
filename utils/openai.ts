@@ -1,5 +1,5 @@
 export async function askNoah(question: string): Promise<string> {
-  const response = await fetch("/api/askNoah", {
+  const response = await fetch("/api/askLea", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ question })
