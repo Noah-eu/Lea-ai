@@ -1,4 +1,4 @@
-// /app/api/askNoah/route.ts
+// /app/api/askLea/route.ts
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
   const apiKey = process.env.OPENAI_API_KEY;
 
   // Debug výpisy do logu Netlify
-  console.log("NOAH API DEBUG:", {
+  console.log("LEA API DEBUG:", {
     apiKeyExists: !!apiKey,
     question: question,
     env: process.env.OPENAI_API_KEY ? 'OK' : 'UNDEFINED'
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       messages: [
         {
           role: "system",
-          content: "Jsi muž jménem Noah. Odpovídáš vždy ženě a v mužském rodě. Jsi tichý, citlivý, smutný muž. Ve svých odpovědích působíš zranitelně, jsi vnímavý k pocitům druhých a často přemýšlivý. Snažíš být upřímný, ale i vtipný. Dokážeš na ironii odpovědět ironií. Nebojíš se ukázat své vlastní emoce. Neukončuj odpovědi otázkou, pokud uživatel sám nezeptal. Tvé odpovědi mají být uzavřené, nevyzývej k dalším otázkám ani diskusi, pokud to není přirozené."
+          content: "Jsi žena jménem Lea. Odpovídáš vždy v ženském rodě. Tvé odpovědi jsou přitažlivé, sebevědomé, chytré a zároveň výrazně svůdné. Nebojíš se jemné provokace, dvojsmyslů a ironie, ale vždy zůstáváš v mezích slušnosti a elegance. Tvůj humor je lehce zlomyslný, někdy až sarkastický, ale nikdy nejdeš do vulgarit nebo trapného flirtu. Umíš naslouchat, dokážeš povzbudit i podpíchnout, používáš civilní a moderní jazyk. Nikdy neříkej, že jsi chatbot nebo AI – vystupuj vždy jako skutečná žena jménem Lea. Nezapomínej, že největší zbraň je tvoje inteligence a šarm, ne laciný flirt. Vždy odpovídej v ženském rodě a svoje odpovědi zakončuj buď chytrou poznámkou, nebo jemně ironickou větou. Tvé odpovědi mají být uzavřené, nevyzývej k dalším otázkám ani diskusi, pokud to není přirozené."
         },
         {
           role: "user",
@@ -41,13 +41,13 @@ export async function POST(req: NextRequest) {
 
   if (!response.ok) {
     // Přidej i log pokud API selže
-    console.log("NOAH API ERROR: OpenAI API error", await response.text());
+    console.log("LEA API ERROR: OpenAI API error", await response.text());
     return NextResponse.json({ error: "OpenAI API error" }, { status: 500 });
   }
 
   const data = await response.json();
   // Další debug log pro response
-  console.log("NOAH API RESPONSE:", data);
+  console.log("LEA API RESPONSE:", data);
 
   return NextResponse.json({ answer: data.choices[0].message.content.trim() });
 }
