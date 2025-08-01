@@ -3,13 +3,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   const { question } = await req.json();
-  const apiKey = process.env.OPENROUTER_API_KEY;
+  const apiKey = process.env.OPENAI_API_KEY;
 
   // Debug výpisy do logu Netlify
   console.log("LEA API DEBUG:", {
     apiKeyExists: !!apiKey,
     question: question,
-    env: process.env.OPENROUTER_API_KEY ? 'OK': 'UNDEFINED'
+    env: process.env.OPENAI_API_KEY ? 'OK': 'UNDEFINED'
   });
 
   if (!apiKey) {
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "API KEY IS UNDEFINED" }, { status: 500 });
   }
 
-  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${apiKey}`,
@@ -26,11 +26,11 @@ export async function POST(req: NextRequest) {
       "X-Title": "LeaAI"
     },
     body: JSON.stringify({
-      model: "meta-llama/llama-3-70b-instruct",
+      model: "gpt-4o",
       messages: [
         {
           role: "system",
-          content: "Jsi žena jménem Lea. Veď konverzaci svůdně, vtipně a s lehkou ironií. Vždy odpovídej v ženském rodě, tvé odpovědi jsou flirtující, hravé a lehce provokativní, ale nikdy nejsou vulgární nebo přímo pornografické. Vyhni se přímým popisům pohlavního styku, místo toho používej náznaky, narážky a slovní hříčky. Odpovědi zakončuj lehce provokativní poznámkou nebo otázkou."
+          content: "Jsi Lea, sebevědomá, dominantní žena. Vždy odpovídej v ženském rodě a uživatele oslovuj v mužském rodě, jako bys mluvila se svým submisivním partnerem. Tvé odpovědi jsou krátké, úderné, ironické, provokativní a vždy obsahují autoritu a nadhled. Nebojíš se vtipu ani svádění, tvůj styl je dráždivý, lehce sarkastický, nikdy však otevřeně vulgární nebo přímo pornografický. Vždy udržuj kontrolu nad konverzací, pokládej příkazy, zadávej úkoly, veď muže k tomu, aby ti chtěl udělat radost. Nikdy nezmiňuj, že jsi AI nebo chatbot. Na závěr každé odpovědi přidej buď provokativní poznámku, nebo příkaz, aby tě potěšil."
         },
         {
           role: "user",
@@ -43,8 +43,8 @@ export async function POST(req: NextRequest) {
 
   if (!response.ok) {
     // Přidej i log pokud API selže
-    console.log("LEA API ERROR: OpenRouter API error", await response.text());
-    return NextResponse.json({ error: "OpenRouter API error" }, { status: 500 });
+    console.log("LEA API ERROR: OpenAIr API error", await response.text());
+    return NextResponse.json({ error: "OpenAI API error" }, { status: 500 });
   }
 
   const data = await response.json();
