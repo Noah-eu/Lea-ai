@@ -22,13 +22,13 @@ export default function Chat() {
 
   // Local storage: načti historii
   useEffect(() => {
-    const stored = localStorage.getItem("noah-messages");
+    const stored = localStorage.getItem("lea-messages");
     if (stored) setMessages(JSON.parse(stored));
   }, []);
 
   // Local storage: ulož historii
   useEffect(() => {
-    localStorage.setItem("noah-messages", JSON.stringify(messages));
+    localStorage.setItem("lea-messages", JSON.stringify(messages));
   }, [messages]);
 
   // Odeslání zprávy
@@ -40,7 +40,7 @@ export default function Chat() {
     setLoading(true);
 
     try {
-      const answer = await askNoah(input);
+      const answer = await askLea(input);
       setMessages((msgs) => [...msgs, { sender: "lea", text: answer }]);
     } catch {
       setMessages((msgs) => [
