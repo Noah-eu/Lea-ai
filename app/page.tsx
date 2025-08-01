@@ -7,8 +7,8 @@ export default function Home() {
       <h1 className="text-4xl font-bold mb-4 text-gray-800">Ahoj, jsem Lea.</h1>
       <p className="text-xl max-w-xl text-center text-gray-600 mb-8">
         Jsem tady jenom pro tebe.<br />
-        Jsem ta, která tě vyslechne. <br />
-        Jsem.
+        Jsem ta, která tě navnadí. <br />
+        Jsem vlhká.
       </p>
       <Link
         href="/chat"
