@@ -1,14 +1,17 @@
 export async function askLea(question: string): Promise<string> {
-  const response = await fetch("/api/askLea", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+  const res = await fetch('/api/askLea', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({ question })
   });
 
-  if (!response.ok) {
-    throw new Error("API error");
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.error || 'Chyba při volání API');
   }
 
-  const data = await response.json();
   return data.answer;
 }
