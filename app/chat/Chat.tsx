@@ -58,15 +58,15 @@ export default function Chat() {
   }
 
   return (
-    <div className="max-w-md w-full mx-auto flex flex-col h-[90vh] max-h-[700px] bg-white rounded-2xl shadow-xl p-4">
+    <div className="max-w-md w-full mx-auto flex flex-col h-[90vh] max-h-[700px] bg-gray-900 rounded-2xl shadow-xl p-4 text-white">
       {/* Hlavička */}
       <div className="flex flex-col items-center mb-4">
         <img
           src="/lea.jpg"
           alt="Lea"
-          className="w-16 h-16 rounded-full shadow-md"
+          className="w-16 h-16 rounded-full shadow-md border-2 border-pink-500"
         />
-        <div className="font-semibold text-gray-700 mt-2 text-lg">Lea</div>
+        <div className="font-semibold text-pink-300 mt-2 text-lg">Lea</div>
       </div>
       {/* Chat */}
       <div className="flex-1 overflow-y-auto mb-2">
@@ -79,7 +79,7 @@ export default function Chat() {
       {/* Input + Odeslat */}
       <div className="flex gap-2 mb-2">
         <input
-          className="flex-1 border border-gray-300 rounded-xl p-2"
+          className="flex-1 border border-gray-700 bg-gray-800 text-white rounded-xl p-2"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
@@ -87,7 +87,7 @@ export default function Chat() {
           disabled={loading}
         />
         <button
-          className="px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold"
+          className="px-4 py-2 rounded-xl bg-pink-700 hover:bg-pink-800 text-white font-semibold"
           onClick={handleSend}
           disabled={loading}
         >
@@ -97,7 +97,7 @@ export default function Chat() {
       {/* Tlačítko smazat chat */}
       <button
         onClick={handleClearChat}
-        className="w-full py-2 rounded-xl font-bold text-white bg-red-500 hover:bg-red-600 transition-colors"
+        className="w-full py-2 rounded-xl font-bold text-white bg-red-700 hover:bg-red-800 transition-colors"
         style={{ marginTop: 2 }}
       >
         Smazat chat
