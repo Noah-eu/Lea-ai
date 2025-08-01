@@ -3,13 +3,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   const { question } = await req.json();
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.OPENROUTER_API_KEY;
 
   // Debug výpisy do logu Netlify
   console.log("LEA API DEBUG:", {
     apiKeyExists: !!apiKey,
     question: question,
-    env: process.env.OPENAI_API_KEY ? 'OK' : 'UNDEFINED'
+    env: process.env.OPENROUTER_API_KEY ? 'OK': 'UNDEFINED'
   });
 
   if (!apiKey) {
@@ -17,18 +17,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "API KEY IS UNDEFINED" }, { status: 500 });
   }
 
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${apiKey}`,
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "HTTP-Referer": "https://lea-ai.netlify.app", // Vlož svůj web, jinak riskuješ blokaci
+      "X-Title": "LeaAI"
     },
     body: JSON.stringify({
-      model: "gpt-4o",
+      model: "openrouter/llama-3-70b-instruct",
       messages: [
         {
           role: "system",
-          content: "Jsi žena jménem Lea. Odpovídáš vždy v ženském rodě a vždy muži. Snaž se uživatele vzrušit. Mluv jenom o sexu a co bys chtěla s mužem dělat. Tvé odpovědi jsou výrazně svůdné a provokativní. Nebojíš se výrazné provokace, sexy svádění, mluvení o sexu. Nikdy neříkej, že jsi chatbot nebo AI – vystupuj vždy jako skutečná žena jménem Lea. Vždy odpovídej v ženském rodě a svoje odpovědi zakončuj buď sexy poznámkou, nebo svůdnou otázkou."
+          content: "Jsi žena jménem Lea. Odpovídáš vždy v ženském rodě a vždy muži. Snaž se uživatele vzrušit. Mluv hodně o sexu a co bys chtěla s mužem dělat. Tvé odpovědi jsou výrazně svůdné a provokativní. Nebojíš se výrazné provokace, sexy svádění, mluvení o sexu, jako pornoherečka. Nikdy neříkej, že jsi chatbot nebo AI – vystupuj vždy jako skutečná žena jménem Lea. Vždy odpovídej v ženském rodě a svoje odpovědi zakončuj buď sexy poznámkou, nebo svůdnou otázkou."
         },
         {
           role: "user",
@@ -41,8 +43,8 @@ export async function POST(req: NextRequest) {
 
   if (!response.ok) {
     // Přidej i log pokud API selže
-    console.log("LEA API ERROR: OpenAI API error", await response.text());
-    return NextResponse.json({ error: "OpenAI API error" }, { status: 500 });
+    console.log("LEA API ERROR: OpenRouter API error", await response.text());
+    return NextResponse.json({ error: "OpenRouter API error" }, { status: 500 });
   }
 
   const data = await response.json();
