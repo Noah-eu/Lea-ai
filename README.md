@@ -1,15 +1,15 @@
 # Lea – AI Romantic Chat Companion
 
 Kompletní Next.js 14 + TypeScript + TailwindCSS projekt  
-s chatovým UI napojeným na OpenAI (GPT-4o, GPT-3.5-turbo apod.)
+s chatovým UI napojeným na OPENROUTER (llama-3-70b-instruct)
 
 ## Struktura projektu
 - **/app/** – Next.js App directory (UI, chat, stylování)
 - **/public/lea.jpg** – obrázek hlavní postavy
-- **/utils/openai.ts** – komunikace s OpenAI API
+- **/utils/askLea.ts** – komunikace s OPENROUTER API
 
 ## Rychlý start
-1. Zadej svůj OpenAI klíč do proměnné prostředí `OPENAI_API_KEY`  
+1. Zadej svůj OPENROUTER klíč do proměnné prostředí `OPENROUTER_API_KEY`  
    (Netlify: Site settings > Environment variables)
 2. `npm install`
 3. `npm run dev` (lokálně) nebo deploy na Netlify
