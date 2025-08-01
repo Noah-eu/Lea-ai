@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
       "X-Title": "LeaAI"
     },
     body: JSON.stringify({
-      model: "openrouter/llama-3-70b-instruct",
+      model: "meta-llama/llama-3-70b-instruct",
       messages: [
         {
           role: "system",
