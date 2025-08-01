@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import MessageBubble from "./MessageBubble";
-import { askLea } from "../../utils/askLea";
+import { askLea } from "../../utils/askLea.ts";
 
 type Message = {
   sender: "user" | "lea";
