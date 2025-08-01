@@ -58,7 +58,7 @@ export default function Chat() {
   }
 
   return (
-    <div className="max-w-md w-full mx-auto flex flex-col h-[90vh] max-h-[700px] bg-gray-900 rounded-2xl shadow-xl p-4 text-white">
+    <div className="max-w-md w-full mx-auto flex flex-col h-screen bg-gray-900 rounded-2xl shadow-xl p-4 text-white">
       {/* Hlavička */}
       <div className="flex flex-col items-center mb-4">
         <img
