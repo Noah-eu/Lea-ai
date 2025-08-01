@@ -45,7 +45,7 @@ export default function Chat() {
     } catch {
       setMessages((msgs) => [
         ...msgs,
-        { sender: "lea", text: "Omlouvám se, něco se pokazilo." },
+        { sender: "lea", text: "Omlouvám se, mám zrovna orgasmus." },
       ]);
     }
     setLoading(false);
